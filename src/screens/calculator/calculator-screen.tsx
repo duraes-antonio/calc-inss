@@ -23,15 +23,7 @@ export const specTaxCalc = new TaxesSocialSecurityForCLT202101();
 function MoneyValue(props: MoneyValueProps) {
     const unit = props.unit ?? 'R$';
 
-    const Input = useMemo(
-        () => (
-            <MoneyValueInput
-                value={props.value}
-                onChangeInput={props.onChangeInput}
-            />
-        ),
-        [props.value],
-    );
+    const Input = useMemo(() => <MoneyValueInput {...props} />, [props.value]);
     return (
         <View style={[styles.sectionMoneyValue, props.containerStyle]}>
             <Text style={[styles.sectionTitle, props.titleStyle]}>
@@ -47,15 +39,18 @@ function MoneyValue(props: MoneyValueProps) {
 }
 
 function CalculatorScreen() {
-    const aliquot = 8.78888;
     const [taxValue, setTaxValue] = useState(0);
-    console.log('RELOAD');
+    const [aliquot, setAliquot] = useState(0);
+    const initialIncome = 3000;
     return (
         <ScrollView style={styles.page}>
             <MoneyValue
                 title={texts.revenue}
-                value={3000}
-                onChangeInput={v => setTaxValue(specTaxCalc.calculate(v))}
+                value={initialIncome}
+                onChangeInput={v => {
+                    setTaxValue(specTaxCalc.calculate(v));
+                    setAliquot((specTaxCalc.calculate(v) / v) * 100);
+                }}
             />
             <MoneyValue
                 readonly

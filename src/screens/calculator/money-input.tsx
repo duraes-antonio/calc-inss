@@ -10,14 +10,13 @@ export interface MoneyValueInputProps {
 
 function MoneyValueInput(props: MoneyValueInputProps) {
     const [value, setValue] = useState(props.value.toFixed(2));
-
     const onInput = useCallback(
         (text: string) => {
             const textValue = text.replace('.', '').replace(/[^0-9,]/g, '');
             setValue(textValue);
             props.onChangeInput?.(+textValue.replace(',', '.') ?? 0);
         },
-        [props.value, props.onChangeInput],
+        [props.onChangeInput],
     );
 
     useEffect(() => {
