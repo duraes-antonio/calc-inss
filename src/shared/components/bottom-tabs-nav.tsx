@@ -15,19 +15,23 @@ function BottomTabsNav(props: BottomTabBarProps) {
     const route: RouteName = state.routes.find((r, i) => i === state.index)
         ?.name as RouteName;
     const onPress = (r: RouteName) => navigation.navigate(r);
-    const config = {size: 24};
+    const config = {
+        size: 24,
+        style: {
+            paddingTop: 18,
+            paddingBottom: 13,
+            paddingHorizontal: 20,
+        },
+    };
     const styles = StyleSheet.create({
         bar: {
             backgroundColor: 'white',
             borderRadius: 15,
             flexDirection: 'row',
-            paddingHorizontal: 35,
-            paddingTop: 18,
-            paddingBottom: 13,
-            width: 260,
+            paddingHorizontal: 15,
             alignSelf: 'center',
             justifyContent: 'space-between',
-            elevation: 5,
+            elevation: 7,
             shadowColor: 'rgba(0,0,0,.3)',
             position: 'absolute',
             bottom: 21,

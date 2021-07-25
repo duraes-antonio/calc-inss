@@ -11,6 +11,10 @@ export const questionStyles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 24,
     },
+    answerLink: {
+        color: colors.blue,
+        fontFamily: FontRoboto.BOLD,
+    },
 });
 
 export const CollapsibleHeader = styled.TouchableOpacity<{open: boolean}>`

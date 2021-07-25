@@ -1,5 +1,5 @@
 import React, {memo, useState} from 'react';
-import {Text, View, ViewStyle} from 'react-native';
+import {Linking, Text, View, ViewStyle} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import Page from '../../shared/components/page';
 import {
@@ -11,26 +11,29 @@ import {
 } from './style';
 import {Question, questions} from './consts';
 
+const openLinkUrl = async (url: string) => await Linking.openURL(url);
+
 function FAQQuestion(props: {
     question: Question;
     opened?: boolean;
     style?: ViewStyle;
 }) {
     const [open, setOpen] = useState(!!props.opened);
+    const {link, answer, title} = props.question;
     return (
         <View style={props.style}>
             <CollapsibleHeader
                 activeOpacity={3 / 5}
                 open={open}
                 onPress={() => setOpen(!open)}>
-                <CollapsibleHeaderText>
-                    {props.question.title}
-                </CollapsibleHeaderText>
+                <CollapsibleHeaderText>{title}</CollapsibleHeaderText>
             </CollapsibleHeader>
             <Collapsible collapsed={!open}>
-                <CollapsibleBody>
-                    <CollapsibleBodyText>
-                        {props.question.answer}
+                <CollapsibleBody
+                    onPress={() => (link ? openLinkUrl(answer) : null)}>
+                    <CollapsibleBodyText
+                        style={link ? questionStyles.answerLink : {}}>
+                        {answer}
                     </CollapsibleBodyText>
                 </CollapsibleBody>
             </Collapsible>

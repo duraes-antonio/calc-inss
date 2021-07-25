@@ -2,7 +2,7 @@ import {taxesCurrentYear} from '../../shared/consts/taxes';
 import {specTaxCalc} from '../calculator/calculator-screen';
 import {formatCurrency} from '../../shared/functions/format';
 
-export type Question = {title: string; answer: string};
+export type Question = {title: string; answer: string; link?: boolean};
 
 const maxTaxable = Math.max(...taxesCurrentYear.map(t => t.maxTaxableAmount));
 const maxValueTaxes = specTaxCalc.calculate(maxTaxable);
@@ -38,5 +38,10 @@ export const questions: Question[] = [
 
 Há outros benefícios que o INSS fornece:
 ${benefits.reduce((prev, curr, i) => `${prev}\n${i + 1}º ${curr}`, '')}`,
+    },
+    {
+        title: 'Onde encontro mais informações para agendamento e inscrição?',
+        answer: 'https://meu.inss.gov.br',
+        link: true,
     },
 ];
