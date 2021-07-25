@@ -5,15 +5,8 @@ import styled from 'styled-components/native';
 const titleFontSize = 36;
 
 export const styles = StyleSheet.create({
-    page: {
-        flex: 1,
-        paddingHorizontal: 24,
-        marginBottom: 20,
-        paddingTop: 64,
-    },
     sectionMoneyValue: {
         alignItems: 'center',
-        flex: 1,
     },
     sectionTitle: {
         fontSize: 24,
@@ -33,6 +26,7 @@ export const styles = StyleSheet.create({
         fontFamily: FontRoboto.BOLD,
         color: colors.commomText,
         marginHorizontal: 5,
+        lineHeight: titleFontSize,
     },
 });
 

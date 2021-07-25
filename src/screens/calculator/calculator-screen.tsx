@@ -1,9 +1,10 @@
 import React, {memo, useMemo, useState} from 'react';
-import {ScrollView, Text, TextStyle, View, ViewStyle} from 'react-native';
+import {Text, TextStyle, View, ViewStyle} from 'react-native';
 import {Aliquot, AliquotTitle, AliquotValue, styles} from './styles';
 import {colors} from '../../shared/consts/style';
 import {TaxesSocialSecurityForCLT202101} from '../../domain/specifications';
 import MoneyValueInput, {MoneyValueInputProps} from './money-input';
+import Page from '../../shared/components/page';
 
 const texts = {
     revenue: 'Qual sua renda?',
@@ -43,7 +44,7 @@ function CalculatorScreen() {
     const [aliquot, setAliquot] = useState(0);
     const initialIncome = 3000;
     return (
-        <ScrollView style={styles.page}>
+        <Page>
             <MoneyValue
                 title={texts.revenue}
                 value={initialIncome}
@@ -65,7 +66,7 @@ function CalculatorScreen() {
                     {aliquot.toFixed(2).replace('.', ',')}%
                 </AliquotValue>
             </Aliquot>
-        </ScrollView>
+        </Page>
     );
 }
 

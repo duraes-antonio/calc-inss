@@ -3,8 +3,8 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RouteName} from './src/routes/route-name';
 import CalculatorScreen from './src/screens/calculator/calculator-screen';
-import FAQScreen from './src/screens/faq-screen';
-import ExplanationScreen from './src/screens/explanation-screen';
+import FAQScreen from './src/screens/faq/faq-screen';
+import ExplanationScreen from './src/screens/explanation/explanation-screen';
 import BottomTabsNav from './src/shared/components/bottom-tabs-nav';
 
 const Tab = createBottomTabNavigator();

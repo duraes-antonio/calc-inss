@@ -29,7 +29,7 @@ function BottomTabsNav(props: BottomTabBarProps) {
             justifyContent: 'space-between',
             elevation: 5,
             shadowColor: 'rgba(0,0,0,.3)',
-
+            position: 'absolute',
             bottom: 21,
         },
     });
