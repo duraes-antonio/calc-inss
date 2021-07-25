@@ -13,7 +13,7 @@ export const questionStyles = StyleSheet.create({
     },
 });
 
-export const CollapsibleHeader = styled.TouchableOpacity`
+export const CollapsibleHeader = styled.TouchableOpacity<{open: boolean}>`
     background-color: ${colors.collapsibleHeader};
     padding: 9px 12px;
     border-radius: ${borderRadius}px;
