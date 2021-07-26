@@ -1,7 +1,8 @@
 import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import BackgroundGreenSvg from '../../../assets/vectors/background-green.svg';
 import BackgroundYellowSvg from '../../../assets/vectors/background-yellow.svg';
+import {AdMobBanner, setTestDeviceIDAsync} from 'expo-ads-admob';
 
 const {height} = Dimensions.get('window');
 
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     left: {
         position: 'absolute',
         left: 0,
-        top: -20,
+        top: 0,
         transform: [{scaleX: -1}, {scaleY: -1}],
         color: 'red',
     },
@@ -29,14 +30,25 @@ const styles = StyleSheet.create({
 });
 
 function Page(props: {children: React.ReactNode}) {
+    useEffect(() => {
+        (async () => await setTestDeviceIDAsync('EMULATOR'))();
+    }, []);
     return (
-        <View style={styles.page}>
-            <BackgroundYellowSvg style={styles.left} />
-            <BackgroundGreenSvg style={styles.right} />
-            <ScrollView style={{height, marginVertical: 80}}>
-                <View style={styles.containerCenter}>{props.children}</View>
-            </ScrollView>
-        </View>
+        <>
+            <AdMobBanner
+                bannerSize="smartBannerLandscape"
+                adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+                servePersonalizedAds={true}
+                onDidFailToReceiveAdWithError={e => console.log(e)}
+            />
+            <View style={styles.page}>
+                <BackgroundYellowSvg style={styles.left} />
+                <BackgroundGreenSvg style={styles.right} />
+                <ScrollView style={{height, marginVertical: 80}}>
+                    <View style={styles.containerCenter}>{props.children}</View>
+                </ScrollView>
+            </View>
+        </>
     );
 }
 
