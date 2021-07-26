@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
         fontSize: titleFontSize,
         fontFamily: FontRoboto.BOLD,
         color: colors.commomText,
-        marginHorizontal: 5,
+        paddingHorizontal: 10,
         lineHeight: titleFontSize,
     },
 });
